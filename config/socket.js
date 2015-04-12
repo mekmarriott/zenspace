@@ -24,6 +24,10 @@ module.exports = function(io, speechToText, alchemy) {
   io.use(function(socket, next) {
     speechToText.createSession({}, function(err, session) {
       if (err) {
+
+        // For running locally
+        //socket.emit('session', 1);
+        //next();
         next(new Error('The server could not create a session'));
       } else {
         sessions[socket.id] = session;
@@ -82,6 +86,13 @@ module.exports = function(io, speechToText, alchemy) {
   io.on('connection', function(socket) {
     var session = sessions[socket.id];
 
+    socket.emit('identity');
+    socket.on('identity', function(data) {
+      if (data === 'analysis') {
+        socket.join('analysis');
+      }
+    })
+
     socket.on('message', function(data) {
       if (!session.open) {
         session.open = true;
@@ -113,6 +124,15 @@ module.exports = function(io, speechToText, alchemy) {
         console.log(log(socket.id), 'delete_session');
       });
     });
+
+    socket.on('facial-analysis', function(data) {
+      io.to('analysis').emit('facial-analysis', data);
+    });
+
+    socket.on('text-analysis', function(data) {
+      io.to('analysis').emit('text-analysis', data);
+    })
+
   });
 
 };

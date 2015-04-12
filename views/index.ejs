@@ -64,16 +64,9 @@
             <canvas id="overlay" width="100%" height="100%"></canvas>
         </div>
         <canvas id="sketch" width="100%" height="100%"></canvas>
-        <div id="emotion_container">
-            <div id="emotion_icons">
-            </div>
-            <div id='emotion_chart'></div>
-        </div>
-        <div id="controls">
-            <div id="chart"></div>
-            <p id="sad-average">0</p>
-        </div>
         <script>
+            var socket = io.connect(this.ws);
+
             var vid = document.getElementById('videoel');
             var overlay = document.getElementById('overlay');
             var overlayCC = overlay.getContext('2d');
@@ -87,16 +80,7 @@
             var count = 0;
             var total = 0;
             var avg = [];
-            var graph = new Rickshaw.Graph( {
-                element: document.querySelector("#chart"),
-                width: 580,
-                height: 250,
-                series: [ {
-                        color: 'steelblue',
-                        data: avg
-                } ]
-            } );
-            
+
             /********** check and set up video/webcam **********/
             function enablestart() {
                 var startbutton = document.getElementById('startbutton');
@@ -151,16 +135,20 @@
                 requestAnimFrame(drawLoop);
                 var cp = ctrack.getCurrentParameters();
                 var er = ec.meanPredict(cp);
+                
                 if (er) {
+                    var value = er[1].value;
+                    var ts = new Date().getTime();
                     count += 1;
-                    total += er[1].value;
-                    average = total / count;
-                    avg.push({
-                        x: new Date().getTime(),
-                        y: average
+                    total += value;
+                    avg = total / count;
+
+                    // Send data to the analysis socket room
+                    socket.emit('facial-analysis', {
+                        timestamp: ts,
+                        current_value: value,
+                        average: avg
                     });
-                    document.getElementById("sad-average").innerHTML = average;
-                    graph.render(); 
                 }
             }
             
