@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zenspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type='text/javascript', src='/js/browser-detect.js'></script>
+    <script type='text/javascript', src='/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript', src='/js/speech-recognizer.js'></script>
+    <script type='text/javascript', src='/js/socket.io.js'></script>
+    <script type='text/javascript', src='/js/demo.js'></script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/clmtrackr.min.js"></script>
+    <script src="/js/model_pca_20_svm_emotionDetection.js"></script>
+    <script src="/js/stats.min.js"></script>
+    <script src="/js/d3.min.js"></script>
+    <script src="/js/emotion_classifier.js"></script>
+    <script src="/js/emotionmodel.js"></script>
+    <script src="/js/d3.min.js"></script>
+    <script src="/js/d3.layout.min.js"></script>
+    <script src="/js/rickshaw.min.js"></script>
+  </head>
+  <style>
+    #final-score {
+        text-align: center;
+        font-size: 100px;
+    }  
+  </style>
+
+  <body>
+    </br>
+
+    <div id="content">
+        <div class="container">
+            <p id="final-score">0</p>
+            <div id="facial-chart"></div>
+            <div id="speech-text"></div>
+        </div>
+    </div>
+
+  </body>
+
+    <script>
+        var socket = io.connect(this.ws);
+        socket.on('identity', function(data) {
+            socket.emit('identity', 'analysis');
+        });
+    </script>
+</html>

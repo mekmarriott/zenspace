@@ -42,5 +42,7 @@ module.exports = function (app, speechToText, alchemy) {
     res.render('index');
   });
 
-
+  app.get('/analysis', function(req, res) {
+    res.render('analysis');
+  });
 };
