@@ -1,12 +1,12 @@
-(function($){
-  $(function(){
+(function($) {
+    $(function() {
 
-    $('.button-collapse').sideNav();
-    $( '#video-space' ).hide();
+        $('.button-collapse').sideNav();
+        $('#video-space').hide();
 
-    // for (element in $('#video-space') {}
+        // for (element in $('#video-space') {}
 
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery); // end of jQuery name space
 
 function clearContent(self) {
@@ -14,10 +14,27 @@ function clearContent(self) {
 }
 
 
-function genCard(self){
+function genCard(self) {
     $('#value-child').fadeOut();
-    $( '#video-space' ).show();
+    $('#video-space').show();
     $('#index-banner').slideUp('slow');
+}
+
+function updateNav() {
+    var x = document.location.pathname;
+    if (x == '/') {
+        // $("#menubar").children('li')[0].toggleClass('selected');
+        $("#one").toggleClass('selected');
+    } else if (x == '/analysis') {
+        $("#two").toggleClass('selected');
+    } else if (x == '/logs') {
+        $("#three").toggleClass('selected');
+    } else if (x == '/exercises') {
+        $("#ex").toggleClass('selected');
+    } else if (x == '/graphs') {
+        $("#five").toggleClass('selected');
+    }
+
 }
 
 function hideCards(self) {
@@ -39,3 +56,4 @@ function hideCards(self) {
         $('ul.medications').append('<li> <content-editable>' + '<code>' + meds[i].medicine + '</code> <small>' + meds[i].pseudo + ' </small> <br> - ' + meds[i].quantity_amount + meds[i].quantity_unit + '</content-editable></li>');
     }*/
 
+updateNav();

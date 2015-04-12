@@ -31,8 +31,9 @@
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <br>
+                <img src="../images/logo.png" width="100%">
                 <br>
-                <h1 class="header center amber-text">Healthy Mind and Body</h1>
+                <!--h1 class="header center amber-text">Find your happy place</h1-->
                 <div class="row center">
                     <h5 class="header col s12 light">Your mental and physical health are our top priority.</h5>
                 </div>
@@ -95,6 +96,7 @@
         <% include footer.ejs %>
     </section>
         <script>
+
             var socket = io.connect(this.ws);
 
             var vid = document.getElementById('videoel');
@@ -118,13 +120,13 @@
                 startbutton.value = "start";
                 startbutton.disabled = null;
             }
-            
+
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
             window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
             // check for camerasupport
             if (navigator.getUserMedia) {
                 // set up stream
-                
+
                 var videoSelector = {video : true};
                 if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
                     var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
@@ -132,7 +134,7 @@
                         videoSelector = "video";
                     }
                 };
-            
+
                 navigator.getUserMedia(videoSelector, function( stream ) {
                     if (vid.mozCaptureStream) {
                         vid.mozSrcObject = stream;
@@ -149,7 +151,7 @@
                 alert("This demo depends on getUserMedia, which your browser does not seem to support. :(");
             }
             vid.addEventListener('canplay', enablestart, false);
-            
+
             /*********** setup of emotion detection *************/
             var ctrack = new clm.tracker({useWebGL : true});
             ctrack.init(pModel);
@@ -167,7 +169,7 @@
                 if (index % 25 == 0) {
                     var cp = ctrack.getCurrentParameters();
                     var er = ec.meanPredict(cp);
-                    
+
                     if (er) {
                         var value = er[1].value;
                         var ts = new Date().getTime();
@@ -185,11 +187,11 @@
                 }
                 index += 1;
             }
-            
+
             var ec = new emotionClassifier();
             ec.init(emotionModel);
-            var emotionData = ec.getBlank();    
-            
+            var emotionData = ec.getBlank();
+
         </script>
   </body>
 </html>
