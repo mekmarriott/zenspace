@@ -46,7 +46,7 @@
 }
 
 .side-nav {
-    font-family: Lato, Ubuntu, Roboto;
+    font-family: Lato;
     top: 56px;
     background-color: #20272C;
     /*background-color: #483C6C;*/
@@ -124,11 +124,11 @@
 
 .header{
     margin: 10px auto 50px auto;
-    font-family: Lato, Ubuntu, Roboto;
+    font-family: Lato;
 }
 
 p, h1, h2, h3, h4, h5 {
-    font-family: Lato, Ubuntu, Roboto;
+    font-family: Lato;
 }
 p.light {
     line-height: 2;
@@ -136,4 +136,67 @@ p.light {
 
 .selected {
     background-color: blueviolet;
+}
+
+.card input, .card .text{
+    outline: none;
+}
+
+
+.notepad, .notepad:before, .notepad:after {
+  background-color: white;
+  background-image: -webkit-linear-gradient(#f6abca 1px, transparent 1px), -webkit-linear-gradient(#f6abca 1px, transparent 1px), -webkit-linear-gradient(#e8e8e8 1px, transparent 1px);
+  background-image: -moz-linear-gradient(#f6abca 1px, transparent 1px), -moz-linear-gradient(#f6abca 1px, transparent 1px), -moz-linear-gradient(#e8e8e8 1px, transparent 1px);
+  background-image: -o-linear-gradient(#f6abca 1px, transparent 1px), -o-linear-gradient(#f6abca 1px, transparent 1px), -o-linear-gradient(#e8e8e8 1px, transparent 1px);
+  background-image: linear-gradient(#f6abca 1px, transparent 1px), linear-gradient(#f6abca 1px, transparent 1px), linear-gradient(#e8e8e8 1px, transparent 1px);
+  background-size: 1px 1px, 1px 1px, 23px 23px;
+  background-repeat: repeat-y, repeat-y, repeat;
+  background-position: 22px 0, 24px 0, 0 50px;
+  border-radius: 2px;
+ /* -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 4px rgba(0, 0, 0, 0.5);*/
+}
+
+.notepad {
+  position: relative;
+ /* margin: 30px auto; */
+  padding: 0 23px 14px 35px;
+  line-height: 23px;
+  font-size: 11px;
+  color: #666;
+}
+
+.notepad p, .notepad blockquote {
+  margin-bottom: 23px;
+}
+
+.notepad :last-child {
+  margin-bottom: 0;
+}
+
+.notepad:before, .notepad:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 100%;
+  left: 3px;
+  right: 3px;
+  margin-top: -2px;
+  height: 4px;
+  background-size: 1px 1px, 1px 1px, 0 0;
+}
+
+.notepad:before {
+  z-index: -2;
+  left: 6px;
+  right: 6px;
+  height: 6px;
+  background-color: #eee;
+}
+.notepad-heading {
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
 }

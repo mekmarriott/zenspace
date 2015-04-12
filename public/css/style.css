@@ -21,6 +21,9 @@ p {
    font-family: "Dosis";
    font-size: 20px;
 }
+a {
+  text-decoration: none !important;
+}
 .bold {
   font-weight: bold;
 }
@@ -110,7 +113,6 @@ input[type="file"]:focus + .browse {
   font-weight: 400;
 }
 
-
 .instructions{
     margin-bottom: 10px;
 }
@@ -137,7 +139,6 @@ input[type="file"]:focus + .browse {
 
 .sample-btn p:hover{
     color: #00B2EF;
-    text-decoration: underline;
 }
 
 .sample-icon {

@@ -19,17 +19,8 @@
     <script src="/js/d3.min.js"></script>
     <script src="/js/d3.layout.min.js"></script>
     <script src="/js/rickshaw.min.js"></script>
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
   </head>
   <style>
-    #wrapper {
-        margin: 0 auto;
-        width: 100%;
-    }
-    #cont {
-        margin-left: 200px;
-    }
     #final-score {
         text-align: center;
         font-size: 100px;
@@ -38,6 +29,7 @@
         margin-left: auto;
         margin-right: auto;
         width: 100%;
+        position: relative;
         text-align: center;
         padding-top: 15px;
     }
@@ -45,16 +37,18 @@
 
   <body>
     <% include layout.ejs %>
-    <section class="left-adjust">
+    </br>
 
+    <div id="content">
         <div class="container">
             <p id="final-score">0</p>
             <div id="facial-chart"></div>
             <div id="speech-text"></div>
         </div>
+    </div>
 
-        <% include footer.ejs %>
-    </section>
+  </body>
+
     <script>
         var socket = io.connect(this.ws);
         var avgs = [];
@@ -79,7 +73,7 @@
         var graph = new Rickshaw.Graph( {
             element: document.getElementById("facial-chart"),
             renderer: 'multi',
-            width: 600,
+            width: 1139,
             height: 200,
             dotSize: 5,
             series: [
@@ -101,31 +95,32 @@
         socket.on('sentiment', function(data){
             console.dir(data);
         });
-        socket.on('transcription', function(data){
+        socket.on('transcription', function(data, sentiment){
             console.dir(data);
-            showResult(data);
+            showResult(data, sentiment);
         });
 
-        function showResult(data) {
+        function showResult(data, sentiment) {
             var transcript = $('#speech-text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
-                    var paragraph = transcript.children().last(),
+                    // var paragraph = transcript.children().last(),
                     text = data.results[0].alternatives[0].transcript || '';
 
                     //Capitalize first word
                     text = text.charAt(0).toUpperCase() + text.substring(1);
                     // if final results, append a new paragraph
                     if (data.results[0].final){
-                        text = text.trim() + '.';
-                        $('<p></p>').appendTo(transcript);
+                        text = '<b>' + text.trim() + '.' + '</b>';
+                        // $('<p></p>').appendTo(transcript);
+                        transcript.innerHTML += text;
                     }
-                    paragraph.text(text);
+                    // paragraph.text(text);
                 }
                 
                 transcript.show();
             }
         }
     </script>
-    </body>
+    <% include footer.ejs %>
 </html>

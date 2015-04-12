@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <title>ZenSpace </title>
+    <!-- CSS  -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <% include layout.ejs %>
+    <section class="left-adjust">
+        <div class="section no-pad-bot" id="index-banner">
+        </div>
+        <div class="container">
+            <br>
+            <br>
+            <h1 class="header center amber-text">Captain's Logs.</h1>
+        </div>
+        <div class="value-prop container">
+            <div class="section">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card" id="card-1" onclick="hideCards(this)">
+                            <date> </date>
+                            <div class="notepad">
+                                <div class="notepad-heading">
+                                    <h3>April 3rd, 2015</h3>
+                                </div>
+                                <div class="text" contenteditable>dddddd </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Share</a>
+                                <a href='#'>Analyze</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="card" id="card-2" onclick="hideCards(this)">
+                            <date> </date>
+                            <div class="notepad">
+                                <div class="notepad-heading">
+                                    <h3>April 2nd, 2015</h3>
+                                </div>
+                                <div class="text" contenteditable> super fun day today guyz! </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Share</a>
+                                <a href='#'>Analyze</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card" id="card-3" onclick="hideCards(this)">
+                            <date> </date>
+                            <div class="notepad">
+                                <div class="notepad-heading">
+                                    <h3>March 31st, 2015</h3>
+                                </div>
+                                <div class="text" contenteditable>dddddd </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Share</a>
+                                <a href='#'>Analyze</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="card" id="card-4" onclick="hideCards(this)">
+                            <date> </date>
+                            <div class="notepad">
+                                <div class="notepad-heading">
+                                    <h3>March 30th, 2015</h3>
+                                </div>
+                                <div class="text" contenteditable>dddddd </div>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Share</a>
+                                <a href='#'>Analyze</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% include footer.ejs %>
+        
+    </section>
+    <script type="text/javascript">
+    data = {
+        "journal": [{
+            "title": "April 2nd, 2015",
+            "body": "I mentioned before that I am doing some cooking experiments up here and I would like to share some tips with you that I have learned.  Last entry I left you with a question to ponder…how do you cook in space when nothing wants to stay put.  We use gravity in so many ways during our daily lives and do not even realize it, like cooking, for example.  You gather your tools and ingredients and set them out on the counter or table or whatever your work surface is.  You mix things in the bowl, you pour liquids from one place to the other, you throw the dirty dishes in the sink and the food remnants in the trash.  All of this is possible because of gravity—everything stays where you put it.  One of the first challenges I had in my cooking adventures was how to manage all of the above. "
+        }, {
+            "title": "April 1st, 2015",
+            "body": "It turns out that with duct tape (yep, the ubiquitous duct tape) and plastic bags you can do just about anything.  I have definitely been on a learning curve.  With each successive experiment I am getting less and less messy. (Note I am not saying I am getting more and more clean and orderly, just less messy!)  From day one, when I realized how useful and necessary plastic bags are to the cooking process I have been on the look out for the right size (and cleanliness) of plastic bags.  Fortunately the ground likes to send things up in plastic bags, as they are very useful for containing all kinds of things, and not just for cooking, so we have tons of them here and it was just a matter of sorting through them to find what I was looking for.  I started a stash and whenever we are doing an activity that liberates plastic bags I grab the promising ones and put them in my stash so I have them handy for the next cooking day. "
+        }, {
+            "title": "March 31st, 2015",
+            "body": "I usually have one plastic bag as my main “bowl” and then use others for the cutting or any preparation work.  Also many of my starting foods are standard foods and come in their own pouches or packets.  At some point all of the ingredients have to be removed from their original packaging and end up in the main “bowl.”  This can be accomplished in several ways and again, it depends on the condition of the ingredients.  The easiest thing to do is cut the food packet along one side, and in this case cut the whole bag and do not leave a tab like we usually do (to avoid small pieces of bag floating away…leaving a bag with a tab allows you to only have one piece of garbage to deal with).  Then it is possible to simply turn the bag open side “down” into the plastic bag that is the main bowl and zip the bag closed such that there is no opening.  Then you can squeeze the contents from the one bag to the other.  This method works if there is a bit of liquid in the ingredient and the item does not consist of small chunks.  If the ingredient is in small chunks you just end up squeezing the food to the sides of its bag and nothing empties out into the plastic bag (not that this has happened or anything….). "
+        }, {
+            "title": "March 30th, 2015",
+            "body": "If it is not possible to squeeze the ingredient out, the next option is to spoon it out.  This will work as long as the food is not too dry.  By the way, scrambled eggs and corn are nightmares to work with as they are small and do not have a lot of liquid inherent in them.  The corn likes to stick to everything, including the spoon, and the eggs are firm believers in entropy (they scatter everywhere!).  I had to play with how to make the cut in the plastic package these foods came in before I was finally able to do this in a not-too-messy of a fashion.   I got around the first issue, the food sticking to the spoon, by placing the spoon deep into the mixing “bowl” and using my hand from the outside to press each side of the plastic bag against the spoon, thus scraping off anything there.  Then it is necessary to very slowly remove the spoon.  To get the eggs to behave I mixed some of the sauce I was using, in the case of the crab salad, mayo, with the eggs while the eggs were still in their original package.  This gave the eggs some cohesiveness and they could be transferred as a lump into the mixing “bowl.”  I actually found that technique to work with any small, dry, loose particles.  Put the sauce with it, and then add them together to the main plastic bag for mixing. "
+        }, {
+            "title": "March 29th, 2015",
+            "body": "The dishes I have made to date have had a high sauce content so they could then be easily eaten or moved around, OR, put on a tortilla.  If the dish needs re-heating, as some do, I put small portions in the foil bags as I mentioned earlier, seal them with duct tape, and put them in the U.S. food warmer, which takes flat pouches as opposed to cans.  Sometimes some liquid escapes in the food warmer and I have to clean that up, but overall it works well.  (For any NASA people reading this, I use disinfectant wipes followed by wet wipes to clean up the food warmer, so no worries!)So it is possible to cook in space with a few hours, lots of dry and wet wipes and the basic tools of duct tape, plastic bags, foil pouches, and a small knife.  It is fun and certainly an adventure!"
+        }, {
+            "title": "March 28th, 2015",
+            "body": "When you think about it, food is an important part of our lives. Family gatherings center around food, the celebration of major life events and milestones involves food in one way or another and have you ever noticed that when you invite people over somehow everyone always ends up in the kitchen? The same holds true for us here on the Space Station. Food is important and ends up usually being, maybe not an issue, but definitely a topic of discussion one way or another, for almost every crew. The food that we have here on ISS has to meet many different requirements - it must last for a long period of time without refrigeration, it has to have the appropriate nutritional value, it has to be appealing and tasty, and it has to be packaged in such a way that we can eat it in microgravity without making a huge mess. That is quite a list! And those are just the “technical” requirements. What about variety? How do you meet all of the various tastes and food peculiarities that you come across, especially when dealing with people from a multitude of different cultures? It is important! What about the logistics of getting the right food here at the right time as well as having enough of the right food on board at any given time? So there are a couple of different questions you have to consider when you talk about food and long-duration space flight…. "
+        }, {
+            "title": "March 27th, 2015",
+            "body": "It turns out that both NASA and Russia have extensive menus that have been developed over the years with a wide variety of foods. Japan has developed a menu which will now be available for selection and Europe is working on menu items as well, so culturally we seem to have the basics covered. At first we were on a 10-day rotating menu with 5 days of food coming from the Russian menu items and 5 days of food from the U.S. menu items. (Food from Japan and Europe was not an option at that time.) This worked OK, but it was very taxing logistically because they had to stage your food boxes on ISS before you got there, or have them fly with you so that you had the food that you picked out available. This system became problematic when we had last-minute (relatively speaking, from a logistics viewpoint) crew changes. Imagine showing up and having to eat someone’s menu, full of meatloaf, because it was a favorite of theirs, and you simply do not like meatloaf. This could be considered bad! "
+        },
+        { "title": "March 26th, 2015",
+            "body": "The system changed such that now we are on a 16-day rotating menu, still with half coming from the U.S. and half from the Russian side, but on the U.S. side we have gone to a standard menu, meaning that every 16 days you start over with the same menu. To compensate the crews, we are allowed to pick one “preference” container which consists of our pick of anything on the U.S. menu list, including any items that may not have made it to the standard menu. This allows us some variety in our menu, with the choices up to us. (We have always gotten one “bonus” container a month which can consist of anything you want that does not require refrigeration and that passes the NASA microbiological tests. That stayed the same with the change in menu planning.) The Russians sort of compromised and have some standard food while still allowing you to pick some food of your preference--however, with the Russian food, it has always been hit or miss getting what you want. So that is the system that we have today and it works pretty well actually. The logistics people only have to worry about delivering a few crew-specific food containers, but otherwise they go on auto pilot to get “X” amount of food up there over “Y” time frames. It also allows the system to react quickly in the case of late crew change-outs. "
+        },
+        { "title": "March 25th, 2015",
+            "body": "So the variety of food is pretty good and you can increase the variety by mixing and matching things, and in my case, doing some space “cooking.” Before I talk more about that, though, I should first mention the overall utility of the tortilla as a basic food group here in space. You can do so much with a tortilla; it becomes the vehicle with which to eat almost anything. I cannot think of anything that cannot be put on a tortilla, or has not been put on a tortilla. Consequently, one of the main goals of any crew is to make sure that enough tortillas get on board (the only other high demand object is caffeine). Some show up on the standard menu, but you can pad that by adding them to both your preference and bonus containers. Also when a Shuttle shows up you are in tortilla heaven because they show up with tons of them and graciously donate all of the extras to the ISS crews. You really want to be swimming in tortillas your whole increment (and thanks to lots of people we are doing well on this front, so we are all happy campers, so to speak!). "
+        }]
+    }
+    for (i = 1; i <= $('.card').length; i++) {
+        $('#card-' + i).children('.notepad').children('.notepad-heading').children('h3')[0].innerText = data.journal[i - 1]['title'];
+        $('#card-' + i).children('.notepad').children('.text')[0].innerText = data.journal[i - 1]['body'];
+        console.log(i);
+    }
+    var link = "http://www.nasa.gov/mission_pages/station/expeditions/expedition18/journal_sandra_magnus_6.html"
+    console.log(data);
+    </script>
+</body>
+
+</html>

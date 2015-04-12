@@ -54,7 +54,11 @@ module.exports = function (app, speechToText, alchemy) {
     res.render('intro');
   });
 
-  app.get('/analysis', function(req, res) {
-    res.render('analysis');
+  app.get('/graphs', function(req, res) {
+    res.render('graphs');
+  });
+
+  app.get('/logs', function(req, res) {
+    res.render('logs');
   });
 };
