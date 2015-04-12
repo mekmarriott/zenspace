@@ -27,7 +27,7 @@ $(document).ready(function() {
   // UI
   var micButton = $('.micButton'),
     micText = $('.micText'),
-    transcript = $('#text'),
+    transcript = $('#speech-text'),
     errorMsg = $('.errorMsg');
 
   // Service
@@ -86,20 +86,22 @@ $(document).ready(function() {
 
   function showResult(data) {
     //if is a partial transcripts
-    if (data.results.length === 1 ) {
-      var paragraph = transcript.children().last(),
-        text = data.results[0].alternatives[0].transcript || '';
+    if (transcript){
+      if (data.results.length === 1 ) {
+        var paragraph = transcript.children().last(),
+          text = data.results[0].alternatives[0].transcript || '';
 
-      //Capitalize first word
-      text = text.charAt(0).toUpperCase() + text.substring(1);
-      // if final results, append a new paragraph
-      if (data.results[0].final){
-        text = text.trim() + '.';
-        $('<p></p>').appendTo(transcript);
+        //Capitalize first word
+        text = text.charAt(0).toUpperCase() + text.substring(1);
+        // if final results, append a new paragraph
+        if (data.results[0].final){
+          text = text.trim() + '.';
+          $('<p></p>').appendTo(transcript);
+        }
+        paragraph.text(text);
       }
-      paragraph.text(text);
+      transcript.show();
     }
-    transcript.show();
   }
 
   function displayError(error) {

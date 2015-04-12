@@ -69,7 +69,7 @@ module.exports = function(io, speechToText, alchemy) {
 
             if (sentiment && sentiment.score) {
               console.log("Sentiment score is " + sentiment.score);
-              socket.emit('sentiment', sentiment.score);
+              socket.emit('message', sentiment.score);
             }
 
           });
