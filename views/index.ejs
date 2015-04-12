@@ -11,6 +11,15 @@
     <script type='text/javascript', src='/js/speech-recognizer.js'></script>
     <script type='text/javascript', src='/js/socket.io.js'></script>
     <script type='text/javascript', src='/js/demo.js'></script>
+  </head>
+
+  <body>
+    <h1>Zenspace</h1>
+    </br>
+    <div class="micButton" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></div>
+    <p class="micText">Press to start speaking</p>
+    <div class = "errorMsg"></div>
+    
     <script src="/js/utils.js"></script>
     <script src="/js/clmtrackr.min.js"></script>
     <script src="/js/model_pca_20_svm_emotionDetection.js"></script>
@@ -21,7 +30,15 @@
     <script src="/js/d3.min.js"></script>
     <script src="/js/d3.layout.min.js"></script>
     <script src="/js/rickshaw.min.js"></script>
-    <script>
+
+    <div id="content">
+        <div id="container">
+            <video id="videoel" width="100%" height="100%" preload="auto" loop>
+            </video>
+            <canvas id="overlay" width="100%" height="100%"></canvas>
+        </div>
+        <canvas id="sketch" width="100%" height="100%"></canvas>
+        <script>
             var socket = io.connect(this.ws);
 
             var vid = document.getElementById('videoel');
@@ -118,77 +135,7 @@
             var emotionData = ec.getBlank();    
             
         </script>
-  </head>
-
-  <body>
-
-    <% include layout.ejs %>
-
-    <section class="left-adjust">
-        <div class="section no-pad-bot" id="index-banner">
-            <div class="container">
-                <br>
-                <br>
-                <h1 class="header center amber-text">Healthy Mind and Body</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">Your mental and physical health are our top priority.</h5>
-                </div>
-                <div class="row center">
-                    <a href="#" id="download-button" class="btn-large waves-effect waves-light orange" onclick="genCard($('.value-prop'))">Get Started</a>
-                </div>
-                <br>
-                <br>
-            </div>
-        </div>
-        <div class="value-prop container">
-            <div class="section" id="value-child">
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><!--i class="mdi-action-accessibility"--><i class="mdi-social-school"></i></h2>
-                            <h5 class="center">Research Driven</h5>
-                            <p class="light">
-                                By utilizing MEMS sensors, physical metrics, and self-reported data, we are able to empower astronauts and citizen scientists alike to take actional steps towards improving their health outcomes.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
-                            <h5 class="center">User Experience Focused</h5>
-                            <p class="light">We present a delightful and unified framework that incorporates contextually-aware components and animations that provide actionable feedback towards users.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="mdi-social-public"></i></h2>
-                            <h5 class="center">Galatic Impact</h5>
-                            <p class="light">Join us in our voyage across the universe as we continue to push the boundaries of space travel.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="section">
-            </div>
-        </div>
-
-    <div id="video-space">
-        <section class="left-adjust">
-<!--             <div class="micButton" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton">Press to start speaking</div> -->
-            <p class="micButton" align = "center" disabled="disabled" onclick="startVideo()" id="startbutton">Press to start speaking</p>
-            <div class = "errorMsg"></div>
-            <div id="container">
-                <video id="videoel" width="100%" height="100%" preload="auto" loop>
-                </video>
-                <canvas id="overlay" width="100%" height="100%"></canvas>
-            </div>
-            <canvas id="sketch" width="100%" height="100%"></canvas>
-        </section>
     </div>
-        <% include footer.ejs %>
+
   </body>
 </html>
