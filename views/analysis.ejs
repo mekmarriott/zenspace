@@ -103,15 +103,18 @@
         socket.on('sentiment', function(data) {
             console.log('sentiment');
             console.dir(data);
-            updateScore();
+            updateScore(data);
         });
         socket.on('transcription', function(data) {
             console.log('transcription');
             console.dir(data);
             showResult(data);
+            updateScore(data);
         });
 
-        var updateScore = function() {
+        var updateScore = function(data) {
+            var score = parseInt(data);
+            $("#progress_1").css("width", 160 + Math.floor((Math.random() * 260) + 1));
             // var currentFaceAvg = avgs[avgs.length + 1];
             // var normCurrentFaceAvg = currentFaceAvg * 50;
             // var currentSentimentAvg = Math.random() * 50;
