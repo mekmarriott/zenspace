@@ -1,0 +1,34 @@
+{
+  "name": "zenspace",
+  "version": "0.1.5",
+  "description": "A nodejs app for space mental health monitoring",
+  "dependencies": {
+    "body-parser": "~1.10.2",
+    "cookie": "~0.1.2",
+    "ejs": "^2.3.1",
+    "errorhandler": "~1.2.4",
+    "express": "^4.10.8",
+    "jade": "~1.8.2",
+    "request": "~2.53.0",
+    "socket.io": "^1.3.5",
+    "watson-developer-cloud": "~0.9.3"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/watson-developer-cloud/speech-to-text-nodejs.git"
+  },
+  "author": "IBM Corp.",
+  "contributors": [
+    {
+      "name": "Emma Marriott",
+      "email": "emarriott@stanford.edu"
+    }
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "node app.js"
+  }
+}

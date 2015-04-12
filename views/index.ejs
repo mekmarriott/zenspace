@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zenspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel='stylesheet', href='/css/style.css'>
+      <style>
+        .container {
+          max-width: 1500px;
+          padding-top:0px;
+        }
+        body {
+          margin-left:10px;
+          margin-right:10px;
+          background-color: #FFFFFF ;
+        }
+        h1 {
+           color: #19D175 ;
+           text-align: center;
+           font-family: "Dosis";
+           font-size: 80px;
+           font-height:60px;
+           line-height:0em;
+           padding:40px;
+        }
+        p {
+           text-align: center;
+           font-family: "Dosis";
+           font-size: 20px;
+        }
+    </style>
+    <script type='text/javascript', src='/js/browser-detect.js'></script>
+    <script type='text/javascript', src='/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript', src='/js/speech-recognizer.js'></script>
+    <script type='text/javascript', src='/js/socket.io.js'></script>
+    <script type='text/javascript', src='/js/demo.js'></script>
+  </head>
+
+  <body>
+    <h1>Zenspace</h1>
+    </br>
+    <div class="micButton"></div>
+    <p class="micText">Press to start speaking</p>
+    <div id="text"></div>
+    <div class = "errorMsg"></div>
+
+
+  </body>
+</html>
