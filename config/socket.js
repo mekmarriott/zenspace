@@ -26,9 +26,9 @@ module.exports = function(io, speechToText, alchemy) {
       if (err) {
 
         // For running locally
-        socket.emit('session', 1);
-        next();
-        //next(new Error('The server could not create a session'));
+        //socket.emit('session', 1);
+        //next();
+        next(new Error('The server could not create a session'));
       } else {
         sessions[socket.id] = session;
         sessions[socket.id].open = false;
@@ -96,27 +96,27 @@ module.exports = function(io, speechToText, alchemy) {
     socket.on('message', function(data) {
       //console.log(log(socket.id),'message:', data);
 
-      // if (!session.open) {
-      //   session.open = true;
-      //   var payload = {
-      //     session_id: session.session_id,
-      //     cookie_session: session.cookie_session,
-      //     content_type: 'audio/l16; rate=' + (data.rate || 48000),
-      //     continuous: true,
-      //     interim_results: true
-      //   };
-      //   // POST /recognize to send data in every message we get
-      //   session.req = speechToText.recognizeLive(payload, observe_results(socket, true));
-      //   // GET /observeResult to get live transcripts
-      //   speechToText.observeResult(payload, observe_results(socket, false));
+      if (!session.open) {
+        session.open = true;
+        var payload = {
+          session_id: session.session_id,
+          cookie_session: session.cookie_session,
+          content_type: 'audio/l16; rate=' + (data.rate || 48000),
+          continuous: true,
+          interim_results: true
+        };
+        // POST /recognize to send data in every message we get
+        session.req = speechToText.recognizeLive(payload, observe_results(socket, true));
+        // GET /observeResult to get live transcripts
+        speechToText.observeResult(payload, observe_results(socket, false));
 
-      // } else if (data.disconnect) {
-      //   // Client send disconnect message.
-      //   // end the /recognize request
-      //   session.req.end();
-      // } else {
-      //   session.req.write(data.audio);
-      // }
+      } else if (data.disconnect) {
+        // Client send disconnect message.
+        // end the /recognize request
+        session.req.end();
+      } else {
+        session.req.write(data.audio);
+      }
     });
 
     // Delete the session on disconnect
