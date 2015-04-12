@@ -43,6 +43,7 @@ function hideCards(self) {
             $('#card-' + i).toggleClass('hidden');
             console.log(i);
         }
+        $('#result').toggleClass('hidden');
         $('#card-' + y).removeClass('hidden');
         $('#card-' + y).parent().toggleClass('m12');
     }
