@@ -27,7 +27,7 @@ $(document).ready(function() {
   // UI
   var micButton = $('.micButton'),
     micText = $('.micText'),
-    transcript = $('#text'),
+    transcript = $('#speech-text'),
     errorMsg = $('.errorMsg');
 
   // Service
@@ -43,11 +43,12 @@ $(document).ready(function() {
     micButton.addClass('recording');
     micText.text('Press again when finished');
     errorMsg.hide();
-    transcript.show();
-
-    // Clean the paragraphs
-    transcript.empty();
-    $('<p></p>').appendTo(transcript);
+    if (transcript) {
+      transcript.show();
+      // Clean the paragraphs
+      transcript.empty();
+      $('<p></p>').appendTo(transcript);
+    }
   };
 
   speech.onerror = function(error) {
@@ -66,7 +67,12 @@ $(document).ready(function() {
 
   speech.onresult = function(data) {
     //console.log('demo.onresult()');
-    showResult(data);
+    //if there are transcripts
+    // if (data.results && data.results.length > 0) {
+    //   showResult(data);
+    // } else if (data) {
+    //   console.log("SENTIMENT: " + data);
+    // }
   };
 
   micButton.click(function() {
@@ -79,29 +85,6 @@ $(document).ready(function() {
     }
   });
 
-  function showResult(data) {
-    //console.log(data);
-    //if there are transcripts
-    if (data.results && data.results.length > 0) {
-
-      //if is a partial transcripts
-      if (data.results.length === 1 ) {
-        var paragraph = transcript.children().last(),
-          text = data.results[0].alternatives[0].transcript || '';
-
-        //Capitalize first word
-        text = text.charAt(0).toUpperCase() + text.substring(1);
-        // if final results, append a new paragraph
-        if (data.results[0].final){
-          text = text.trim() + '.';
-          $('<p></p>').appendTo(transcript);
-        }
-        paragraph.text(text);
-      }
-    }
-    transcript.show();
-  }
-
   function displayError(error) {
     var message = error;
     try {
@@ -113,12 +96,8 @@ $(document).ready(function() {
 
     errorMsg.text(message);
     errorMsg.show();
-    transcript.hide();
+    // transcript.hide();
   }
-
-  // //Sample audios
-  // var audio1 = 'audio/sample1.wav',
-  //   audio2 = 'audio/sample2.wav';
 
   function _error(xhr) {
     $('.loading').hide();

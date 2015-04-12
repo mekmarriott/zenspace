@@ -48,7 +48,7 @@ module.exports = function(io, speechToText, alchemy) {
     ].join(' ');
   };
 
-  var observe_results = function(socket, recognize_end) {
+  var observe_results = function(socket, recognize_end, io) {
     var session = sessions[socket.id];
     return function(err, chunk) {
       if (err) {
@@ -62,7 +62,17 @@ module.exports = function(io, speechToText, alchemy) {
         var transcript = (chunk && chunk.results && chunk.results.length > 0);
 
         if (transcript && !recognize_end) {
-          socket.emit('message', chunk);
+          io.to('analysis').emit('transcription', chunk);
+          alchemy.sentiment(JSON.stringify(chunk.results), {}, function(err, response) {
+            if (err) throw err;
+            var sentiment = response.docSentiment;
+
+            if (sentiment && sentiment.score) {
+              // socket.emit('message', sentiment.score);
+              io.to('analysis').emit('sentiment', sentiment);
+            }
+
+          });
         }
         if (recognize_end) {
           console.log(log(socket.id), 'results:', JSON.stringify(chunk, null, 2));
