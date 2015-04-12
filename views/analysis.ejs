@@ -33,20 +33,23 @@
         text-align: center;
         padding-top: 15px;
     }
+    #cont {
+        margin-left: 200px;
+    }
   </style>
 
   <body>
     <% include layout.ejs %>
     </br>
 
-    <div id="content">
+    <div id="cont">
         <div class="container">
             <p id="final-score">0</p>
             <div id="facial-chart"></div>
             <div id="speech-text"></div>
         </div>
     </div>
-
+    <% include footer.ejs %>
   </body>
 
     <script>
@@ -73,7 +76,7 @@
         var graph = new Rickshaw.Graph( {
             element: document.getElementById("facial-chart"),
             renderer: 'multi',
-            width: 1139,
+            width: 725,
             height: 200,
             dotSize: 5,
             series: [
@@ -122,5 +125,4 @@
             }
         }
     </script>
-    <% include footer.ejs %>
 </html>
