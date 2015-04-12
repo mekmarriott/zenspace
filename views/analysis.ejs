@@ -101,11 +101,10 @@
             console.dir(data);
             updateScore();
         });
-        socket.on('transcription', function(data, sentiment) {
+        socket.on('transcription', function(data) {
             console.log('transcription');
             console.dir(data);
-            console.dir(sentiment);
-            showResult(data, sentiment);
+            showResult(data);
         });
 
         var updateScore = function() {
@@ -116,7 +115,7 @@
             // document.getElementById('final-score').innerHTML = total;
         }
 
-        function showResult(data, sentiment) {
+        function showResult(data) {
             var transcript = $('#speech-text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
