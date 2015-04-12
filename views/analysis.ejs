@@ -64,12 +64,13 @@
                 x: data.timestamp,
                 y: data.current_value
             };
-            var avg = {
-                x: data.timestamp,
-                y: data.average
-            };
+            // var avg = {
+            //     x: data.timestamp,
+            //     y: data.average
+            // };
+
             values.push(value);
-            avgs.push(avg);
+            avgs.push(data.average);
             graph.render();
             updateScore();
         });
