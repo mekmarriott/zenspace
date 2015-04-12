@@ -80,6 +80,7 @@
             var count = 0;
             var total = 0;
             var avg = [];
+            var index = 0;
 
             /********** check and set up video/webcam **********/
             function enablestart() {
@@ -133,23 +134,26 @@
             }
             function drawLoop() {
                 requestAnimFrame(drawLoop);
-                var cp = ctrack.getCurrentParameters();
-                var er = ec.meanPredict(cp);
-                
-                if (er) {
-                    var value = er[1].value;
-                    var ts = new Date().getTime();
-                    count += 1;
-                    total += value;
-                    avg = total / count;
+                if (index % 25 == 0) {
+                    var cp = ctrack.getCurrentParameters();
+                    var er = ec.meanPredict(cp);
+                    
+                    if (er) {
+                        var value = er[1].value;
+                        var ts = new Date().getTime();
+                        count += 1;
+                        total += value;
+                        avg = total / count;
 
-                    // Send data to the analysis socket room
-                    socket.emit('facial-analysis', {
-                        timestamp: ts,
-                        current_value: value,
-                        average: avg
-                    });
+                        // Send data to the analysis socket room
+                        socket.emit('facial-analysis', {
+                            timestamp: ts,
+                            current_value: value,
+                            average: avg
+                        });
+                    }
                 }
+                index += 1;
             }
             
             var ec = new emotionClassifier();

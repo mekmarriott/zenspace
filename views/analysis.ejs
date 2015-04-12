@@ -25,7 +25,15 @@
     #final-score {
         text-align: center;
         font-size: 100px;
-    }  
+    }
+    #facial-chart {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        position: relative;
+        text-align: center;
+        padding-top: 15px;
+    }
   </style>
 
   <body>
@@ -43,8 +51,45 @@
 
     <script>
         var socket = io.connect(this.ws);
+        var avgs = [];
+        var values = [];
         socket.on('identity', function(data) {
             socket.emit('identity', 'analysis');
         });
+        socket.on('facial-analysis', function(data) {
+            var value = {
+                x: data.timestamp,
+                y: data.current_value
+            };
+            var avg = {
+                x: data.timestamp,
+                y: data.average
+            };
+            values.push(value);
+            avgs.push(avg);
+            graph.render();
+        });
+
+        var graph = new Rickshaw.Graph( {
+            element: document.getElementById("facial-chart"),
+            renderer: 'multi',
+            width: 1139,
+            height: 200,
+            dotSize: 5,
+            series: [
+                {
+                    name: 'values',
+                    data: values,
+                    color: '#008CFF',
+                    renderer: 'stack'
+                }
+                // }, {
+                //     name: 'averages',
+                //     data: avgs,
+                //     color: 'rgba(255, 127, 0, 0.4)',
+                //     renderer: 'line'
+                // }
+            ]
+        } );
     </script>
 </html>
