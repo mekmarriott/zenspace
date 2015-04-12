@@ -42,13 +42,17 @@
     <% include layout.ejs %>
     </br>
 
-    <div id="cont">
-        <div class="container">
-            <p id="final-score">0</p>
-            <div id="facial-chart"></div>
-            <div id="speech-text"></div>
+    <section class="left-adjust">
+        <div class="section no-pad-bot" id="index-banner">
+            <div class="container">
+                <div id="cont">
+                        <p id="final-score">0</p>
+                        <div id="facial-chart"></div>
+                        <div id="speech-text"></div>
+                </div>
+             </div>
         </div>
-    </div>
+    </section>
     <% include footer.ejs %>
   </body>
 
@@ -120,7 +124,7 @@
                     }
                     // paragraph.text(text);
                 }
-                
+
                 transcript.show();
             }
         }
