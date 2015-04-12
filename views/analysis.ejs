@@ -54,7 +54,7 @@
         });
 
         function showResult(data) {
-            var transcript = document.getElementById('speech-text');
+            var transcript = $('speech-text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
                     var paragraph = transcript.children().last(),
