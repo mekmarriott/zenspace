@@ -66,7 +66,12 @@ $(document).ready(function() {
 
   speech.onresult = function(data) {
     //console.log('demo.onresult()');
-    showResult(data);
+    //if there are transcripts
+    if (data.results && data.results.length > 0) {
+      showResult(data);
+    } else if (data) {
+      console.log("SENTIMENT: " + data);
+    }
   };
 
   micButton.click(function() {
@@ -80,26 +85,19 @@ $(document).ready(function() {
   });
 
   function showResult(data) {
-    //console.log(data);
-    //if there are transcripts
-    if (data.results && data.results.length > 0) {
+    //if is a partial transcripts
+    if (data.results.length === 1 ) {
+      var paragraph = transcript.children().last(),
+        text = data.results[0].alternatives[0].transcript || '';
 
-      //if is a partial transcripts
-      if (data.results.length === 1 ) {
-        var paragraph = transcript.children().last(),
-          text = data.results[0].alternatives[0].transcript || '';
-
-        //Capitalize first word
-        text = text.charAt(0).toUpperCase() + text.substring(1);
-        // if final results, append a new paragraph
-        if (data.results[0].final){
-          text = text.trim() + '.';
-          $('<p></p>').appendTo(transcript);
-        }
-        paragraph.text(text);
+      //Capitalize first word
+      text = text.charAt(0).toUpperCase() + text.substring(1);
+      // if final results, append a new paragraph
+      if (data.results[0].final){
+        text = text.trim() + '.';
+        $('<p></p>').appendTo(transcript);
       }
-    } else if (data) {
-      console.log("GOT DATA: " + data);
+      paragraph.text(text);
     }
     transcript.show();
   }
