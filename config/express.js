@@ -39,7 +39,19 @@ module.exports = function (app, speechToText, alchemy) {
 
   // render index page
   app.get('/', function(req, res) {
-    res.render('index');
+    res.render('home');
+  });
+
+  app.get('/analysis', function(req, res) {
+    res.render('analysis');
+  });
+
+  app.get('/exercises', function(req, res) {
+    res.render('exercises');
+  });
+
+  app.get('/intro', function(req, res) {
+    res.render('intro');
   });
 
   app.get('/analysis', function(req, res) {
