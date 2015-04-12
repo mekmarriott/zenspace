@@ -59,10 +59,12 @@ module.exports = function(io, speechToText, alchemy) {
 
         if (transcript && !recognize_end) {
           socket.emit('message', chunk);
-          alchemy.sentiment('<URL|HTML|TEXT>', {}, function(err, response) {
+          console.log("inputting chunk: " + chunk);
+          alchemy.sentiment(chunk, {}, function(err, response) {
             if (err) throw err;
             var sentiment = response.docSentiment;
-            socket.emit('message', sentiment);
+            console.log("Sentiment of this is " + sentiment);
+            socket.etmit('message', sentiment);
           });
         }
         if (recognize_end) {
