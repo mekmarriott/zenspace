@@ -27,7 +27,7 @@ $(document).ready(function() {
   // UI
   var micButton = $('.micButton'),
     micText = $('.micText'),
-    transcript = $('#speech-text'),
+    transcript = $('#text'),
     errorMsg = $('.errorMsg');
 
   // Service

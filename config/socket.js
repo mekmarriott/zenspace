@@ -48,7 +48,7 @@ module.exports = function(io, speechToText, alchemy) {
     ].join(' ');
   };
 
-  var observe_results = function(socket, recognize_end) {
+  var observe_results = function(socket, recognize_end, io) {
     var session = sessions[socket.id];
     return function(err, chunk) {
       if (err) {
@@ -68,8 +68,8 @@ module.exports = function(io, speechToText, alchemy) {
             var sentiment = response.docSentiment;
 
             if (sentiment && sentiment.score) {
-              console.log("Sentiment score is " + sentiment.score);
               socket.emit('message', sentiment.score);
+              io.to('analysis').emit('sentiment', sentiment.score);
             }
 
           });
@@ -106,7 +106,7 @@ module.exports = function(io, speechToText, alchemy) {
         // POST /recognize to send data in every message we get
         session.req = speechToText.recognizeLive(payload, observe_results(socket, true));
         // GET /observeResult to get live transcripts
-        speechToText.observeResult(payload, observe_results(socket, false));
+        speechToText.observeResult(payload, observe_results(socket, false, io));
 
       } else if (data.disconnect) {
         // Client send disconnect message.
