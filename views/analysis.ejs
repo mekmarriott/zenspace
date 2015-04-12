@@ -35,7 +35,7 @@
         <div class="container">
             <p id="final-score">0</p>
             <div id="facial-chart"></div>
-            <div id="speech-text"></div>
+            <div id="text"></div>
         </div>
     </div>
 
@@ -55,7 +55,7 @@
         });
 
         function showResult(data) {
-            var transcript = $('#speech-text');
+            var transcript = document.getElementById('text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
                     var paragraph = transcript.children().last(),
