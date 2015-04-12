@@ -50,11 +50,12 @@
             console.dir(data);
         });
         socket.on('transcription', function(data){
+            console.dir(data);
             showResult(data);
         });
 
         function showResult(data) {
-            var transcript = $('speech-text');
+            var transcript = $('#speech-text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
                     var paragraph = transcript.children().last(),

@@ -98,10 +98,6 @@ $(document).ready(function() {
     // transcript.hide();
   }
 
-  // //Sample audios
-  // var audio1 = 'audio/sample1.wav',
-  //   audio2 = 'audio/sample2.wav';
-
   function _error(xhr) {
     $('.loading').hide();
     displayError('Error processing the request, please try again.');
