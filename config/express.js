@@ -21,7 +21,7 @@ var express    = require('express'),
   errorhandler = require('errorhandler'),
   bodyParser   = require('body-parser'),
   fs           = require('fs');
-module.exports = function (app, speechToText) {
+module.exports = function (app, speechToText, alchemy) {
 
   // Configure Express
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,10 +37,17 @@ module.exports = function (app, speechToText) {
     app.use(errorhandler());
   }
 
-// render index page
-app.get('/', function(req, res) {
-  res.render('index');
-});
+  // render index page
+  app.get('/', function(req, res) {
+    res.render('index');
+  });
+
+  app.get('/boiler', function(req, res) {
+    res.render('boiler.html');
+  });
+  app.get('/recognition', function(req, res) {
+    res.render('recognition.html');
+  });
 
 
 };

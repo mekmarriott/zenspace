@@ -16,7 +16,7 @@
 
 'use strict';
 
-module.exports = function(io, speechToText) {
+module.exports = function(io, speechToText, alchemy) {
 
   var sessions = {};
 

@@ -3,6 +3,7 @@
   "version": "0.1.5",
   "description": "A nodejs app for space mental health monitoring",
   "dependencies": {
+    "alchemy-api": "^1.1.2",
     "body-parser": "~1.10.2",
     "cookie": "~0.1.2",
     "ejs": "^2.3.1",

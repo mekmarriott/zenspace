@@ -34,14 +34,24 @@ var credentials = extend({
 	password: process.env.BLUEMIX_PASSWORD
 }, bluemix.getServiceCreds('speech_to_text')); // VCAP_SERVICES
 
+// Configure alchemy
+var AlchemyAPI = require('alchemy-api');
+var credentials_alchemy = extend({
+  version:'v1',
+	username: process.env.BLUEMIX_USERNAME,
+	password: process.env.BLUEMIX_PASSWORD
+}, bluemix.getUserCreds('user-provided')); // VCAP_SERVICES
+
+var alchemy = new AlchemyAPI(credentials_alchemy.apikey);
+
 // Create the service wrapper
 var speechToText = watson.speech_to_text(credentials);
 
 // Configure express
-require('./config/express')(app, speechToText);
+require('./config/express')(app, speechToText, alchemy);
 
 // Configure sockets
-require('./config/socket')(io, speechToText);
+require('./config/socket')(io, speechToText, alchemy);
 
 var port = process.env.VCAP_APP_PORT || 3000;
 server.listen(port);
