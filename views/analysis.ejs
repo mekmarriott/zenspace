@@ -46,5 +46,8 @@
         socket.on('identity', function(data) {
             socket.emit('identity', 'analysis');
         });
+        socket.on('sentiment', function(data){
+            console.log("SENTIMENT: " + data);
+        });
     </script>
 </html>
