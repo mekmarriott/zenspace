@@ -27,7 +27,7 @@ $(document).ready(function() {
   // UI
   var micButton = $('.micButton'),
     micText = $('.micText'),
-    // transcript = $('#speech-text'),
+    transcript = $('#speech-text'),
     errorMsg = $('.errorMsg');
 
   // Service
@@ -43,11 +43,12 @@ $(document).ready(function() {
     micButton.addClass('recording');
     micText.text('Press again when finished');
     errorMsg.hide();
-    // transcript.show();
-
-    // Clean the paragraphs
-    // transcript.empty();
-    // $('<p></p>').appendTo(transcript);
+    if (transcript) {
+      transcript.show();
+      // Clean the paragraphs
+      transcript.empty();
+      $('<p></p>').appendTo(transcript);
+    }
   };
 
   speech.onerror = function(error) {
