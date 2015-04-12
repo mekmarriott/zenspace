@@ -41,7 +41,7 @@
   <body>
     <h1>Zenspace</h1>
     </br>
-    <div class="micButton"></div>
+    <div class="micButton" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></div>
     <p class="micText">Press to start speaking</p>
     <div id="text"></div>
     <div class = "errorMsg"></div>
@@ -70,7 +70,6 @@
             <div id='emotion_chart'></div>
         </div>
         <div id="controls">
-            <input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
             <div id="chart"></div>
             <p id="sad-average">0</p>
         </div>
@@ -146,6 +145,7 @@
                 ctrack.start(vid);
                 // start loop to draw face
                 drawLoop();
+                // startSpeechToText();
             }
             function drawLoop() {
                 requestAnimFrame(drawLoop);

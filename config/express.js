@@ -42,12 +42,5 @@ module.exports = function (app, speechToText, alchemy) {
     res.render('index');
   });
 
-  app.get('/boiler', function(req, res) {
-    res.render('boiler.html');
-  });
-  app.get('/recognition', function(req, res) {
-    res.render('recognition.html');
-  });
-
 
 };
