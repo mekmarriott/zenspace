@@ -94,6 +94,8 @@ module.exports = function(io, speechToText, alchemy) {
     })
 
     socket.on('message', function(data) {
+      //console.log(log(socket.id),'message:', data);
+
       if (!session.open) {
         session.open = true;
         var payload = {
@@ -106,7 +108,7 @@ module.exports = function(io, speechToText, alchemy) {
         // POST /recognize to send data in every message we get
         session.req = speechToText.recognizeLive(payload, observe_results(socket, true));
         // GET /observeResult to get live transcripts
-        speechToText.observeResult(payload, observe_results(socket, false, io));
+        speechToText.observeResult(payload, observe_results(socket, false));
 
       } else if (data.disconnect) {
         // Client send disconnect message.
