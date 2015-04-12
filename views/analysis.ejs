@@ -113,6 +113,7 @@
 
         var updateScore = function(data) {
             var score = parseInt(data);
+            console.log("Updating progress bar");
             $("#progress_1").css("width", 160 + Math.floor((Math.random() * 260) + 1));
             // var currentFaceAvg = avgs[avgs.length + 1];
             // var normCurrentFaceAvg = currentFaceAvg * 50;
