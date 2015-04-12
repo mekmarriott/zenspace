@@ -104,6 +104,7 @@
         socket.on('transcription', function(data, sentiment) {
             console.log('transcription');
             console.dir(data);
+            console.dir(sentiment);
             showResult(data, sentiment);
         });
 
@@ -119,18 +120,17 @@
             var transcript = $('#speech-text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
-                    // var paragraph = transcript.children().last(),
+                    var paragraph = transcript.children().last(),
                     text = data.results[0].alternatives[0].transcript || '';
 
                     //Capitalize first word
                     text = text.charAt(0).toUpperCase() + text.substring(1);
                     // if final results, append a new paragraph
                     if (data.results[0].final){
-                        text = '<b>' + text.trim() + '.' + '</b>';
-                        // $('<p></p>').appendTo(transcript);
-                        transcript.innerHTML += text;
+                        text = text.trim() + '.';
+                        $('<p></p>').appendTo(transcript);
                     }
-                    // paragraph.text(text);
+                    paragraph.text(text);
                 }
                 
                 transcript.show();
