@@ -21,7 +21,62 @@
     <script src="/js/d3.min.js"></script>
     <script src="/js/d3.layout.min.js"></script>
     <script src="/js/rickshaw.min.js"></script>
-    <script>
+  </head>
+
+  <body>
+
+    <% include layout.ejs %>
+
+    <section class="left-adjust">
+        <div class="section no-pad-bot" id="index-banner">
+            <div class="container">
+                <br>
+                <br>
+                <h1 class="header center amber-text">Healthy Mind and Body</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">Your mental and physical health are our top priority.</h5>
+                </div>
+                <div class="row center">
+                    <a href="#" id="download-button" class="btn-large waves-effect waves-light orange" onclick="genCard($('.value-prop'))">Get Started</a>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="value-prop container">
+            <div class="section" id="value-child">
+                <!--   Icon Section   -->
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center light-blue-text"><!--i class="mdi-action-accessibility"--><i class="mdi-social-school"></i></h2>
+                            <h5 class="center">Research Driven</h5>
+                            <p class="light">
+                                By utilizing MEMS sensors, physical metrics, and self-reported data, we are able to empower astronauts and citizen scientists alike to take actional steps towards improving their health outcomes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
+                            <h5 class="center">User Experience Focused</h5>
+                            <p class="light">We present a delightful and unified framework that incorporates contextually-aware components and animations that provide actionable feedback towards users.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center light-blue-text"><i class="mdi-social-public"></i></h2>
+                            <h5 class="center">Galatic Impact</h5>
+                            <p class="light">Join us in our voyage across the universe as we continue to push the boundaries of space travel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="section">
+            <script>
             var socket = io.connect(this.ws);
 
             var vid = document.getElementById('videoel');
@@ -118,61 +173,6 @@
             var emotionData = ec.getBlank();    
             
         </script>
-  </head>
-
-  <body>
-
-    <% include layout.ejs %>
-
-    <section class="left-adjust">
-        <div class="section no-pad-bot" id="index-banner">
-            <div class="container">
-                <br>
-                <br>
-                <h1 class="header center amber-text">Healthy Mind and Body</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light">Your mental and physical health are our top priority.</h5>
-                </div>
-                <div class="row center">
-                    <a href="#" id="download-button" class="btn-large waves-effect waves-light orange" onclick="genCard($('.value-prop'))">Get Started</a>
-                </div>
-                <br>
-                <br>
-            </div>
-        </div>
-        <div class="value-prop container">
-            <div class="section" id="value-child">
-                <!--   Icon Section   -->
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><!--i class="mdi-action-accessibility"--><i class="mdi-social-school"></i></h2>
-                            <h5 class="center">Research Driven</h5>
-                            <p class="light">
-                                By utilizing MEMS sensors, physical metrics, and self-reported data, we are able to empower astronauts and citizen scientists alike to take actional steps towards improving their health outcomes.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
-                            <h5 class="center">User Experience Focused</h5>
-                            <p class="light">We present a delightful and unified framework that incorporates contextually-aware components and animations that provide actionable feedback towards users.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="mdi-social-public"></i></h2>
-                            <h5 class="center">Galatic Impact</h5>
-                            <p class="light">Join us in our voyage across the universe as we continue to push the boundaries of space travel.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="section">
             </div>
         </div>
 
