@@ -98,6 +98,8 @@ $(document).ready(function() {
         }
         paragraph.text(text);
       }
+    } else if (data) {
+      console.log("GOT DATA: " + data);
     }
     transcript.show();
   }

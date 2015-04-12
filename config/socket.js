@@ -83,8 +83,6 @@ module.exports = function(io, speechToText, alchemy) {
     var session = sessions[socket.id];
 
     socket.on('message', function(data) {
-      //console.log(log(socket.id),'message:', data);
-
       if (!session.open) {
         session.open = true;
         var payload = {
