@@ -8,6 +8,16 @@
     <!-- CSS  -->
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <script src="http://johannburkard.de/resources/Johann/jquery.highlight-5.js"></script>
+    <script type='text/javascript'>
+      function highlight(dictionary) {
+        dictionary.forEach(function(word) {
+            $('.card').highlight(word);
+        });
+      }
+      var words = ['still', 'allowed', 'compromise', 'easily', 'possible', '!', 'fun', 'well', 'good', 'great', 'pick', 'allows', 'bonus', 'promise', 'promising', 'accomplish', 'works', 'able', 'work', 'celebrate', 'happy', 'thanks'];
+
+    </script>
 </head>
 
 <body>

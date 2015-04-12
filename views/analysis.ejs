@@ -68,13 +68,15 @@
                 x: data.timestamp,
                 y: data.current_value
             };
-            var avg = {
-                x: data.timestamp,
-                y: data.average
-            };
+            // var avg = {
+            //     x: data.timestamp,
+            //     y: data.average
+            // };
+
             values.push(value);
-            avgs.push(avg);
+            avgs.push(data.average);
             graph.render();
+            updateScore();
         });
 
         var graph = new Rickshaw.Graph( {
@@ -99,14 +101,25 @@
             ]
         } );
 
-        socket.on('sentiment', function(data){
+        socket.on('sentiment', function(data) {
+            console.log('sentiment');
             console.dir(data);
+            updateScore();
         });
-        socket.on('transcription', function(data, sentiment){
+        socket.on('transcription', function(data, sentiment) {
+            console.log('transcription');
             console.dir(data);
             console.dir(sentiment);
             showResult(data, sentiment);
         });
+
+        var updateScore = function() {
+            // var currentFaceAvg = avgs[avgs.length + 1];
+            // var normCurrentFaceAvg = currentFaceAvg * 50;
+            // var currentSentimentAvg = Math.random() * 50;
+            // var total = normCUrrentFaceAvg + currentSentimentAvg;
+            // document.getElementById('final-score').innerHTML = total;
+        }
 
         function showResult(data, sentiment) {
             var transcript = $('#speech-text');
