@@ -49,5 +49,30 @@
         socket.on('sentiment', function(data){
             console.log("SENTIMENT: " + data);
         });
+        socket.on('transcription', function(data){
+            console.dir(data);
+            showResult(data);
+        });
+
+        function showResult(data) {
+            var transcript = $('#speech-text');
+            if (data.results && data.results.length > 0) {
+                if (data.results.length === 1 ) {
+                    var paragraph = transcript.children().last(),
+                    text = data.results[0].alternatives[0].transcript || '';
+
+                    //Capitalize first word
+                    text = text.charAt(0).toUpperCase() + text.substring(1);
+                    // if final results, append a new paragraph
+                    if (data.results[0].final){
+                        text = text.trim() + '.';
+                        $('<p></p>').appendTo(transcript);
+                    }
+                    paragraph.text(text);
+                }
+                
+                transcript.show();
+            }
+        }
     </script>
 </html>
