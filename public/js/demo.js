@@ -86,7 +86,7 @@ $(document).ready(function() {
   });
 
   function showResult(data) {
-    //console.log(data);
+    console.log(data);
     //if there are transcripts
     if (data.results && data.results.length > 0) {
 
