@@ -63,7 +63,7 @@
         });
         socket.on('facial-analysis', function(data) {
             var value = {
-                x: data.timestamp,
+                x: new Date().getTime();//data.timestamp,
                 y: data.current_value
             };
             // var avg = {
