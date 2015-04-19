@@ -333,7 +333,7 @@ SpeechRecognizer.prototype._init = function() {
   this.socket.on('onerror', onError);
 
   this.socket.on('message', function(msg){
-    //console.log('socket.onmessage():', msg);
+    console.log('socket.onmessage():', msg);
     self.onresult(msg);
   });
 
