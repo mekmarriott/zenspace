@@ -262,3 +262,14 @@ h2 {
     fill : steelblue;
     fill-opacity : .9;
 }
+
+#zenspace-logo {
+/*    background: url('../images/zenspace-logo.png') no-repeat;
+    background-size: auto 450px;*/
+    width: auto;
+    max-width: 600px;
+    height: auto;
+
+/*    margin:auto;
+    display:block;*/
+}
