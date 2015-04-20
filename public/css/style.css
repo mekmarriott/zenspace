@@ -68,17 +68,17 @@ input[type="file"]:focus + .browse {
     cursor: pointer;
 }
 .micButton.recording {
-/*    background: url('../images/microphone_running.svg') no-repeat;
-*/}
+    background: url('../images/microphone_running.svg') no-repeat;
+}
 .micButton.recording:hover {
-/*    background: url('../images/microphone_running.svg') no-repeat;
-*/}
+    background: url('../images/microphone_running.svg') no-repeat;
+}
 .micButton-preload {
     display: none;
 }
 .micButton-preload, .micButton:hover {
-/*    background: url('../images/microphone_hover.svg') no-repeat;
-*/}
+    background: url('../images/microphone_hover.svg') no-repeat;
+}
 .micButton:hover .micText {
     text-decoration: underline;
 }

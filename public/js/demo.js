@@ -105,7 +105,7 @@ $(document).ready(function() {
           text = text.trim() + '.';
           if (sentiment){
             var score = parseFloat(sentiment);
-            var color = "gray";
+            var color = "purple";
             if (score > 0.4){
               color = "red";
             } else if (score < -0.4){
@@ -113,7 +113,7 @@ $(document).ready(function() {
             }
             $('<p style="color: ' + color + ';"></p>').appendTo(transcript);
           } else {
-            $('<p></p>').appendTo(transcript);
+            $('<p style="color: gray;"></p>').appendTo(transcript);
           }
         }
         paragraph.text(text);
