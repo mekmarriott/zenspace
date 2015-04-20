@@ -113,7 +113,7 @@ $(document).ready(function() {
             }
             $('<p style="color: ' + color + ';"></p>').appendTo(transcript);
           } else {
-            $('<p style="color: gray;"></p>').appendTo(transcript);
+            $('<p></p>').appendTo(transcript);
           }
         }
         paragraph.text(text);
