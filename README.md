@@ -1,106 +1,16 @@
-# Speech to Text Nodejs Starter Application
+[Zenspace][zenspace]
 
-  The [Speech to Text][service_url] service uses IBM's speech recognition capabilities to convert English speech into text. The transcription of incoming audio is continuously sent back to the client with minimal delay, and it is corrected as more speech is heard. The service can be accessed via a REST interface.
+We aim to utilize past astronaut mission logs and journal entires, along with new video and text inputs to extract the emotional state of crew members, and apply targeted VR "escape" modules to improve mental well-being. 
 
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
+Description
+The major long-term strategic goal of NASA is the future manned exploration of asteroids and Mars. Such missions are estimated to have round-trip mission durations of 400 - 450 days, and will present several key challenges. Among these, the behavioral health risks associated with prolonged confinement are the most serious and difficult to mitigate. A recent study (Basner et al.) documenting the psychological and behavioral changes on six astronauts during confinement in a 520-day simulated interplanetary mission to Mars illustrated the detrimental effects of prolonged confinement and isolation on the psyche. Indications of deteriorating mental health included increased lethargy, insomnia, depression, confusion, sickness, physical and mental exhaustion, and anxiety, all of which pose potential threats to mission integrity.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/speech-to-text-nodejs)
+Through targeted virtual reality treatments, Zen Space seeks to improve astronaut mental health outcomes during prolonged spaceflight. Each astronaut sees a dashboard for common activities, including mission logs, journal entries, messages, and a portal for launching virtual reality simulations of their choosing. Simulation recommendations are generated based on comprehensive emotional profilings, which are built through data collected from several sources (see below), with the goal of promoting a healthy and stable mental state.
 
-## Getting Started
+Machine learning frameworks are applied to the following data sources: -Key-facial-feature detection in video-logs for sentiment analysis -Sentiment analysis of video-log transcriptions (achieved through integrated speech-to-text functionality) -Past and Future Journal entries (using sample NASA journal logs) -Self-reporting questionnaires
 
-1. Create a Bluemix Account
+Monitoring each astronaut’s emotional profile over time, psychiatrists at Mission Control can detect negative trends in their psychological well-being. Meanwhile, a user-user collaborative filtering algorithm provides astronauts with VR simulations that have benefitted those experiencing similar psychological stresses in the past. Psychiatrists can provide additional simulation recommendations.
 
-    [Sign up][sign_up] in Bluemix, or use an existing account. Watson Services in Beta are free to use.
+Future iterations will: -Provide an open platform from earth-bound citizens to upload new simulations -Utilize additional metric inputs (possibly sourced from the “Fit as a Moose” challenge) to correlate physiological response to mental health, and improve emotional state detection and treatment efficacy -Include a “Christmas Effect” VR option that will open a new, random simulation every 72 hours -Improved data analytics suite for earth-bound health teams to track and visualize mental health -Simulations optimized to treat the six common causes of psychological distress: -----monotony and boredom -----low autonomy -----crew member friction -----low workload -----hypostimulation / restricted social contact -----sleep irregularity / sleep quality
 
-2. Download and install the [Cloud-foundry CLI][cloud_foundry] tool
-
-3. Edit the `manifest.yml` file and change the `<application-name>` to something unique.
-  ```none
-  applications:
-  - services:
-    - speech-to-text-service
-    name: <application-name>
-    command: node app.js
-    path: .
-    memory: 128M
-  ```
-  The name you use will determinate your application url initially, e.g. `<application-name>.mybluemix.net`.
-
-4. Connect to Bluemix in the command line tool.
-  ```sh
-  $ cf api https://api.ng.bluemix.net
-  $ cf login -u <your user ID>
-  ```
-
-5. Create the Speech to Text service in Bluemix.
-  ```sh
-  $ cf create-service speech_to_text free speech-to-text-service
-  ```
-
-6. Push it live!
-  ```sh
-  $ cf push
-  ```
-
-See the full [Getting Started][getting_started] documentation for more details, including code snippets and references.
-
-## Running locally
-
-  The application uses [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) so you will have to download and install them as part of the steps below.
-
-1. Copy the credentials from your `speech-to-text-service` service in Bluemix to `app.js`, you can see the credentials using:
-
-    ```sh
-    $ cf env <application-name>
-    ```
-    Example output:
-    ```sh
-    System-Provided:
-    {
-    "VCAP_SERVICES": {
-      "speech_to_text": [{
-          "credentials": {
-            "url": "<url>",
-            "password": "<password>",
-            "username": "<username>"
-          },
-        "label": "speech-to-text",
-        "name": "speech-to-text-service",
-        "plan": "free"
-     }]
-    }
-    }
-    ```
-
-    You need to copy `username`, `password` and `url`.
-
-2. Install [Node.js](http://nodejs.org/)
-3. Go to the project folder in a terminal and run:
-    `npm install`
-4. Start the application
-5.  `node app.js`
-6. Go to `http://localhost:3000`
-
-## Troubleshooting
-
-To troubleshoot your Bluemix app the main useful source of information are the logs, to see them, run:
-
-  ```sh
-  $ cf logs <application-name> --recent
-  ```
-
-## License
-
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
-
-## Contributing
-
-  See [CONTRIBUTING](CONTRIBUTING.md).
-
-## Open Source @ IBM
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
-
-[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/speech-to-text.html
-[cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
-[sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
+[zenspace]: https://2015.spaceappschallenge.org/project/zen-space/
