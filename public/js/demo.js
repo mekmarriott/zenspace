@@ -104,7 +104,7 @@ $(document).ready(function() {
         if (data.results[0].final){
           text = text.trim() + '.';
           if (sentiment){
-            score = parseFloat(sentiment);
+            var score = parseFloat(sentiment);
             var color = "gray";
             if (score > 0.4){
               color = "red";
