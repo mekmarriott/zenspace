@@ -52,8 +52,8 @@ input[type="file"]:focus + .browse {
     margin-top: 10px;
     color: #999999;
     text-align: center;
-    cursor: pointer;
-}
+/*    cursor: pointer;
+*/}
 .instructions {
     margin-bottom: 10px;
 }
@@ -61,10 +61,15 @@ input[type="file"]:focus + .browse {
     width: 100%;
 }
 .micButton {
-    font-size: 14px;
+/*    font-size: 14px;
     margin-top: 10px;
     color: #999999;
     text-align: left;
+    cursor: pointer;*/
+    background: url('../images/microphone.svg') no-repeat;
+    width: 120px;
+    height: 120px;
+    margin: 0px auto;
     cursor: pointer;
 }
 .micButton.recording {
