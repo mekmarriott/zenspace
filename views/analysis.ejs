@@ -9,6 +9,7 @@
     <script type='text/javascript', src='/js/speech-recognizer.js'></script>
     <script type='text/javascript', src='/js/socket.io.js'></script>
     <script type='text/javascript', src='/js/demo.js'></script>
+    <script src="http://d3js.org/d3.v2.js"></script>
     <script src="/js/utils.js"></script>
     <script src="/js/clmtrackr.min.js"></script>
     <script src="/js/model_pca_20_svm_emotionDetection.js"></script>
@@ -19,6 +20,8 @@
     <script src="/js/d3.min.js"></script>
     <script src="/js/d3.layout.min.js"></script>
     <script src="/js/rickshaw.min.js"></script>
+    <script src="/js/line-graph.js"></script>
+    <link rel="stylesheet" href="/css/svg-style.css" type="text/css">
   </head>
   <style>
     #final-score {
@@ -35,6 +38,9 @@
     }
     #cont {
         margin-left: 200px;
+    } 
+    div.aGraph {
+    margin-bottom: 30px;
     }
   </style>
 
@@ -43,118 +49,91 @@
     </br>
 
     <section class="left-adjust">
-        <div class="section no-pad-bot" id="index-banner">
-            <div class="container">
-                <div class="progress">
-                  <div id="progress_1" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" height="50px" style="width: 50%">
-                  </div>
+        <div class="value-prop container">
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4 class="graph-text">How was YOUR week?</h4></div>
+                <div class="panel-body">
+                    <div id="graph1" class="aGraph" style="position:relative;width:100%;height:400px"></div>
                 </div>
-                <div id="cont">
-                        <p id="final-score">0</p>
-                        <div id="facial-chart"></div>
-                        <div id="speech-text"></div>
-                </div>
-             </div>
+            </div>
         </div>
-
-    <% include footer.ejs %>
-        </section>
+        <% include footer.ejs %>
+    </section>
   </body>
 
     <script>
-        var socket = io.connect(this.ws);
-        var avgs = [];
-        var values = [];
-        socket.on('identity', function(data) {
-            socket.emit('identity', 'analysis');
-        });
-        socket.on('facial-analysis', function(data) {
-            var value = {
-                x: new Date().getTime(),//data.timestamp,
-                y: data.current_value
-            };
-            // var avg = {
-            //     x: data.timestamp,
-            //     y: data.average
-            // };
+     /*
+     * Note how the 'data' object is added to here before rendering to provide decoration information.
+     * <p>
+     * This is purposefully done here instead of in data.js as an example of how data would come from a server
+     * and then have presentation information injected into it (rather than as separate arguments in another object)
+     * and passed into LineGraph.
+     *
+     * Also, CSS can be used to style colors etc, but this is also doable via the 'data' object so that the styling
+     * of different data points can be done in code which is often more natural for display names, legends, line colors etc
+     */
+     // add presentation logic for 'data' object using optional data arguments
+         var data = {"start":1336594920000,"end":1336680960000,"step":120000,"names":["Sentiment"],"values":[[10.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.2, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.4, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1, 5.0, 4.9, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.0, 4.0, 4.1, 4.2, 4.1, 4.2, 4.1, 4.0, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.4, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1, 5.0, 4.9, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.0, 4.0, 4.1, 4.2, 4.1, 4.2, 4.1, 4.0, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.4, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3,5.2, 5.3, 5.4, 5.5, 5.4, 5.4, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1, 5.0, 4.9, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.0, 4.0, 4.1, 4.2, 4.1, 4.2, 4.1, 4.0, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.4, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1, 5.0, 4.9, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.0, 4.0, 4.1, 4.2, 4.1, 4.2, 4.1, 4.0, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6, 5.4, 5.3, 5.2, 5.3, 5.4, 5.5, 5.4, 5.4, 5.0, 4.8, 4.7, 4.8, 4.9, 5.1, 5.3, 5.4, 5.0, 4.8, 4.6, 4.6, 4.6, 4.3, 4.2, 4.2, 4.1, 4.0, 4.1, 4.2, 4.3, 4.5, 4.7, 4.8, 4.9, 5.1, 5.2, 5.2, 5.2, 5.3, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0, 5.9, 5.8, 5.6, 5.6, 5.6, 5.6, 5.6,5.7, 5.9, 6.0, 5.9, 5.9, 5.9, 5.8, 5.7, 5.6, 5.7, 5.8, 5.7, 5.7, 5.7, 5.6, 5.5, 5.6, 5.7, 5.8, 5.9, 5.8, 5.7, 5.6, 5.5, 5.4, 5.5, 5.4, 5.5, 5.6, 5.7, 5.8, 5.7, 5.6, 5.6, 5.6]]};
 
-            values.push(value);
-            avgs.push(data.average);
-            graph.render();
-            updateScore();
-        });
+     data["displayNames"] = ["sentiment"];
+     data["colors"] = ["darkblue"];
+     data["scale"] = "linear";
+     data["rounding"] = [2];
+     data["numAxisLabelsLinearScale"] = 10;
 
-        var graph = new Rickshaw.Graph( {
-            element: document.getElementById("facial-chart"),
-            renderer: 'multi',
-            width: 725,
-            height: 200,
-            dotSize: 5,
-            series: [
-                {
-                    name: 'values',
-                    data: values,
-                    color: '#008CFF',
-                    renderer: 'stack'
-                }
-                // }, {
-                //     name: 'averages',
-                //     data: avgs,
-                //     color: 'rgba(255, 127, 0, 0.4)',
-                //     renderer: 'line'
-                // }
-            ]
-        } );
 
-        socket.on('sentiment', function(data) {
-            console.log('sentiment');
-            console.dir(data);
-            showResult(data.chunk, data.score);
-            updateScore(data);
-        });
-        socket.on('transcription', function(data) {
-            console.log('transcription');
-            console.dir(data);
-            showResult(data, null);
-            updateScore(data);
-        });
+     var end = (new Date).getTime();
+     var start = end - 43020000
+     data["end"] = end;
+     data["start"] = start;
 
-        var updateScore = function(data) {
-            var score = parseInt(data);
-            console.log("Updating progress bar");
-            
-            var currentFaceAvg = avgs[avgs.length-1];
-            var normCurrentFaceAvg = currentFaceAvg * 300;
-            console.log(normCurrentFaceAvg);
-            $("#progress_1").css("width", 50 + normCurrentFaceAvg + Math.floor((Math.random() * 50)));
-            // var currentSentimentAvg = Math.random() * 50;
-            // var total = normCUrrentFaceAvg + currentSentimentAvg;
-            // document.getElementById('final-score').innerHTML = total;
-        }
 
-        function showResult(data, sentiment) {
-            var transcript = $('#speech-text');
-            if (data.results && data.results.length > 0) {
-                if (data.results.length === 1 ) {
-                    var paragraph = transcript.children().last(),
-                    text = data.results[0].alternatives[0].transcript || '';
 
-                    //Capitalize first word
-                    text = text.charAt(0).toUpperCase() + text.substring(1);
-                    // if final results, append a new paragraph
-                    if (data.results[0].final){
-                        text = text.trim() + '.';
-                        if (sentiment) {
-                            $('<p style = "color: red;"></p>').appendTo(transcript);
-                        } else {
-                            $('<p></p>').appendTo(transcript);
-                        }
-                    }
-                    paragraph.text(text);
-                }
 
-                transcript.show();
-            }
-        }
+
+     // create graph now that we've added presentation config
+    var l1 = new LineGraph({containerId: 'graph1', data: data});
+
+    function addData(datum) {
+      end = (new Date).getTime();
+    var dataA = {"start":end - 43020000,"end":end,"step":240000,"names":["sentiment"],"values":[[241243]]};
+      // dataA.values[0][0] = datum;
+      dataA.values[0][0] = datum;
+
+
+
+
+      dataA.start = dataA.start + dataA.step;
+      dataA.end = dataA.end + dataA.step;
+      l1.slideData(dataA);
+    }
+
+
+    setInterval(function() {
+    /*
+    * The following will simulate live updating of the data (see dataA, dataB, dataC etc in data.js which are real examples)
+    * This is being simulated so this example functions standalone without a backend server which generates data such as data.js contains.
+    */
+    // for each data series ...
+    var newData = [];
+    data.values.forEach(function(dataSeries, index) {
+      // take the first value and move it to the end
+      // and capture the value we're moving so we can send it to the graph as an update
+      var v = dataSeries.shift();
+      dataSeries.push(v);
+      // put this value in newDatsa as an array with 1 value
+      newData[index] = [v];
+    })
+
+    // we will reuse dataA each time
+    dataA.values = newData;
+    // increment time 1 step
+    dataA.start = dataA.start + dataA.step;
+    dataA.end = dataA.end + dataA.step; 
+          
+    l1.slideData(dataA);
+    }, 10000000);
+
+    
     </script>
 </html>

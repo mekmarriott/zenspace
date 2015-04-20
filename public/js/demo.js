@@ -114,7 +114,7 @@ $(document).ready(function() {
             $('<p style="color: ' + color + ';"></p>').appendTo(transcript);
           } 
           else {
-            $('<p></p>').appendTo(transcript);
+            $('<p style="color: gray;"></p>').appendTo(transcript);
           }
         }
         paragraph.text(text);
