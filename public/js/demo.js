@@ -71,8 +71,8 @@ $(document).ready(function() {
     if (data.results && data.results.length > 0) {
       showResult(data, null);
     } else if (data) {
-      console.log("SENTIMENT: ")
-      console.dir(data);
+      // console.log("SENTIMENT: ")
+      // console.dir(data);
       showResult(data.chunk, data.score)
     }
   };
@@ -88,7 +88,7 @@ $(document).ready(function() {
   });
 
   function showResult(data, sentiment) {
-    console.log(data);
+    // console.log(data);
     //if there are transcripts
     if (data.results && data.results.length > 0) {
 
@@ -99,7 +99,7 @@ $(document).ready(function() {
 
         //Capitalize first word
         text = text.charAt(0).toUpperCase() + text.substring(1);
-        console.log(text);
+        // console.log(text);
         // if final results, append a new paragraph
         if (data.results[0].final){
           text = text.trim() + '.';

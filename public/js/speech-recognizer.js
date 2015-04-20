@@ -320,11 +320,11 @@ SpeechRecognizer.prototype._init = function() {
 
   this.socket.on('connect_failed', function() {
     console.log('socket.connect_failed()');
-    self.onerror('WebSocket can not be contacted');
+    self.onerror('WebSocket cannot be contacted');
   });
 
   var onError = function(error) {
-    var errorStr = error ? error : 'A unknown error occurred';
+    var errorStr = error ? error : 'An unknown error occurred';
     console.log('socket.onerror()', errorStr);
     self.onerror(errorStr);
   };
