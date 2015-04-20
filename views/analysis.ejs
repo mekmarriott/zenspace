@@ -102,12 +102,13 @@
         socket.on('sentiment', function(data) {
             console.log('sentiment');
             console.dir(data);
+            showResult(data.chunk, data.score);
             updateScore(data);
         });
         socket.on('transcription', function(data) {
             console.log('transcription');
             console.dir(data);
-            showResult(data);
+            showResult(data, null);
             updateScore(data);
         });
 
@@ -124,7 +125,7 @@
             // document.getElementById('final-score').innerHTML = total;
         }
 
-        function showResult(data) {
+        function showResult(data, sentiment) {
             var transcript = $('#speech-text');
             if (data.results && data.results.length > 0) {
                 if (data.results.length === 1 ) {
@@ -136,7 +137,11 @@
                     // if final results, append a new paragraph
                     if (data.results[0].final){
                         text = text.trim() + '.';
-                        $('<p></p>').appendTo(transcript);
+                        if (sentiment) {
+                            $('<p style = "color: red;"></p>').appendTo(transcript);
+                        } else {
+                            $('<p></p>').appendTo(transcript);
+                        }
                     }
                     paragraph.text(text);
                 }

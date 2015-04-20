@@ -62,14 +62,19 @@ module.exports = function(io, speechToText, alchemy) {
         var transcript = (chunk && chunk.results && chunk.results.length > 0);
 
         if (transcript && !recognize_end) {
+          socket.emit('message',chunk)
           io.to('analysis').emit('transcription', chunk);
           alchemy.sentiment(JSON.stringify(chunk.results), {}, function(err, response) {
             if (err) throw err;
             var sentiment = response.docSentiment;
 
             if (sentiment && sentiment.score) {
-              // socket.emit('message', sentiment.score);
-              io.to('analysis').emit('sentiment', sentiment);
+              var packet = {
+                chunk: chunk,
+                score: sentiment.score
+              }
+              socket.emit('message', packet);
+              io.to('analysis').emit('sentiment', packet);
             }
 
           });

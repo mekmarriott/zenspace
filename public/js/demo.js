@@ -66,13 +66,14 @@ $(document).ready(function() {
   };
 
   speech.onresult = function(data) {
-    // console.log('demo.onresult()');
-    // // if there are transcripts
-    // if (data.results && data.results.length > 0) {
-    //   showResult(data);
-    // } else if (data) {
-    //   console.log("SENTIMENT: " + data);
-    // }
+    console.log('demo.onresult()');
+    // if there are transcripts
+    if (data.results && data.results.length > 0) {
+      showResult(data);
+    } else if (data) {
+      console.log("SENTIMENT: ")
+      console.dir(data);
+    }
   };
 
   micButton.click(function() {
