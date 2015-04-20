@@ -112,7 +112,8 @@ $(document).ready(function() {
               color = "blue";
             }
             $('<p style="color: ' + color + ';"></p>').appendTo(transcript);
-          } else {
+          } 
+          else {
             $('<p></p>').appendTo(transcript);
           }
         }
