@@ -86,29 +86,29 @@ $(document).ready(function() {
     }
   });
 
-  // function showResult(data) {
-  //   console.log(data);
-  //   //if there are transcripts
-  //   if (data.results && data.results.length > 0) {
+  function showResult(data) {
+    console.log(data);
+    //if there are transcripts
+    if (data.results && data.results.length > 0) {
 
-  //     //if is a partial transcripts
-  //     if (data.results.length === 1 ) {
-  //       var paragraph = transcript.children().last(),
-  //         text = data.results[0].alternatives[0].transcript || '';
+      //if is a partial transcripts
+      if (data.results.length === 1 ) {
+        var paragraph = transcript.children().last();
+        var text = data.results[0].alternatives[0].transcript || '';
 
-  //       //Capitalize first word
-  //       text = text.charAt(0).toUpperCase() + text.substring(1);
-  //       console.log(text);
-  //       // if final results, append a new paragraph
-  //       if (data.results[0].final){
-  //         text = text.trim() + '.';
-  //         $('<p></p>').appendTo(transcript);
-  //       }
-  //       paragraph.text(text);
-  //     }
-  //   }
-  //   transcript.show();
-  // }
+        //Capitalize first word
+        text = text.charAt(0).toUpperCase() + text.substring(1);
+        console.log(text);
+        // if final results, append a new paragraph
+        if (data.results[0].final){
+          text = text.trim() + '.';
+          $('<p></p>').appendTo(transcript);
+        }
+        paragraph.text(text);
+      }
+    }
+    transcript.show();
+  }
   
   function displayError(error) {
     var message = error;
