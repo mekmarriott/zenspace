@@ -93,8 +93,14 @@
                         </video>
                         <canvas id="overlay" width="100%" height="100%"></canvas>
                     </div>
-                    <div class = "col-md-4" id="speech-text"></div>
                     <canvas class = "col-md-8" id="sketch" width="100%" height="100%"></canvas>
+                    <div class="col-md-4">
+                        <div class = "panel panel-default">
+                            <div class="panel-heading">Transcriptions</div>
+                            <div class="panel-body" id="speech-text">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 <!--                 <div id="container">
                     <div id="speech-text"></div>
@@ -124,7 +130,6 @@
         var avg = [];
         var graph = new Rickshaw.Graph( {
             element: document.querySelector("#chart"),
-            width: 450,
             height: 250,
             series: [ {
                     color: 'steelblue',

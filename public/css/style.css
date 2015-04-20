@@ -16,8 +16,16 @@ h1 {
    line-height:0em;
    padding:40px;
 }
+h4 {
+   color: #19D175 ;
+   text-align: left;
+   font-family: "Dosis";
+   font-size: 40px;
+   font-height:60px;
+   line-height:0em;
+}
 p {
-   text-align: center;
+   text-align: left;
    font-family: "Dosis";
    font-size: 20px;
 }
@@ -192,8 +200,6 @@ input[type="file"]:focus + .browse {
     transform : scaleX(-1);
     -ms-filter : fliph; /*IE*/
     filter : fliph; /*IE*/
-    width : 450px;
-    height : 450px;
 }
 
 #container {
